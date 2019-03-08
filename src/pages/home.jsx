@@ -10,6 +10,8 @@ import WordBG from './../assets/img/6.png'
 
 import Word from './../components/word';
 import NowPlaying from './../components/nowPlaying';
+import CustomizedExpansionPanel from './../components/collapsible';
+
 
 export default class Home extends React.Component {
     constructor(props){
@@ -32,6 +34,7 @@ export default class Home extends React.Component {
                 </Grid>
                 <Grid item xs={12} sm={6}>
                     <NowPlaying />
+                    <CustomizedExpansionPanel />
                 </Grid>
 
                 <Grid item xs={12} sm={3}>

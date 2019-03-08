@@ -10,6 +10,8 @@ import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import Button from '@material-ui/core/Button';
 import Icon from '@material-ui/core/Icon';
+import Fab from '@material-ui/core/Fab';
+import NavigationIcon from '@material-ui/icons/Navigation';
 
 const styles = theme => ({
     root: {
@@ -20,7 +22,10 @@ const styles = theme => ({
         margin: theme.spacing.unit,
     },
     textField: {
-        flexBasis: 200,
+        flexBasis: 1000,
+    },
+    extendedIcon: {
+        marginRight: theme.spacing.unit,
     },
 });
 
@@ -41,10 +46,8 @@ const ranges = [
 
 class Login extends React.Component {
     state = {
-        amount: '',
         password: '',
-        weight: '',
-        weightRange: '',
+        username: '',
         showPassword: false,
     };
 
@@ -61,68 +64,20 @@ class Login extends React.Component {
 
         return (
             <div className={classes.root}>
-                <TextField
-                    id="filled-simple-start-adornment"
-                    className={classNames(classes.margin, classes.textField)}
-                    variant="filled"
-                    label="With filled TextField"
-                    InputProps={{
-                        startAdornment: (
-                            <InputAdornment variant="filled" position="start">
-                                Kg
-              </InputAdornment>
-                        ),
-                    }}
-                />
-                <TextField
-                    select
-                    className={classNames(classes.margin, classes.textField)}
-                    variant="filled"
-                    label="With Select"
-                    value={this.state.weightRange}
-                    onChange={this.handleChange('weightRange')}
-                    InputProps={{
-                        startAdornment: (
-                            <InputAdornment variant="filled" position="start">
-                                Kg
-              </InputAdornment>
-                        ),
-                    }}
-                >
-                    {ranges.map(option => (
-                        <MenuItem key={option.value} value={option.value}>
-                            {option.label}
-                        </MenuItem>
-                    ))}
-                </TextField>
-                <TextField
-                    id="filled-adornment-amount"
-                    className={classNames(classes.margin, classes.textField)}
-                    variant="filled"
-                    label="Amount"
-                    value={this.state.amount}
-                    onChange={this.handleChange('amount')}
-                    InputProps={{
-                        startAdornment: (
-                            <InputAdornment variant="filled" position="start">
-                                $
-              </InputAdornment>
-                        ),
-                    }}
-                />
+                
                 <TextField
                     id="filled-adornment-weight"
                     className={classNames(classes.margin, classes.textField)}
                     variant="filled"
-                    label="Weight"
-                    value={this.state.weight}
-                    onChange={this.handleChange('weight')}
-                    helperText="Weight"
+                    label="Username"
+                    value={this.state.username}
+                    onChange={this.handleChange('username')}
+                    helperText="Username"
                     InputProps={{
                         endAdornment: (
                             <InputAdornment variant="filled" position="end">
-                                Kg
-              </InputAdornment>
+                                <Icon>person</Icon>
+                            </InputAdornment>
                         ),
                     }}
                 />
@@ -148,11 +103,10 @@ class Login extends React.Component {
                     }}
                 />
 
-                <Button variant="contained" color="primary" className={classes.button}>
-                    Send
-                    {/* This Button uses a Font Icon, see the installation instructions in the docs. */}
-                    <Icon className={classes.rightIcon}>send</Icon>
-                </Button>
+                <Fab variant="extended" color="primary" aria-label="Add" className={classes.margin} style={{ width: '100%'}}>
+                    <NavigationIcon className={classes.extendedIcon} />
+                    Extended
+                </Fab>
             </div>
         );
     }

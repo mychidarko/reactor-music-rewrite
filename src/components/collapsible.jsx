@@ -78,38 +78,6 @@ class CustomizedExpansionPanel extends React.Component {
             </Typography>
           </ExpansionPanelDetails>
         </ExpansionPanel>
-        <ExpansionPanel
-          square
-          expanded={expanded === 'panel2'}
-          onChange={this.handleChange('panel2')}
-        >
-          <ExpansionPanelSummary>
-            <Typography>Collapsible Group Item #2</Typography>
-          </ExpansionPanelSummary>
-          <ExpansionPanelDetails>
-            <Typography>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus
-              ex, sit amet blandit leo lobortis eget. Lorem ipsum dolor sit amet, consectetur
-              adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget.
-            </Typography>
-          </ExpansionPanelDetails>
-        </ExpansionPanel>
-        <ExpansionPanel
-          square
-          expanded={expanded === 'panel3'}
-          onChange={this.handleChange('panel3')}
-        >
-          <ExpansionPanelSummary>
-            <Typography>Collapsible Group Item #3</Typography>
-          </ExpansionPanelSummary>
-          <ExpansionPanelDetails>
-            <Typography>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus
-              ex, sit amet blandit leo lobortis eget. Lorem ipsum dolor sit amet, consectetur
-              adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget.
-            </Typography>
-          </ExpansionPanelDetails>
-        </ExpansionPanel>
       </div>
     );
   }
