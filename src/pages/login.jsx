@@ -105,7 +105,7 @@ class Login extends React.Component {
 
                 <Fab variant="extended" color="primary" aria-label="Add" className={classes.margin} style={{ width: '100%'}}>
                     <NavigationIcon className={classes.extendedIcon} />
-                    Extended
+                    LOGIN
                 </Fab>
             </div>
         );
