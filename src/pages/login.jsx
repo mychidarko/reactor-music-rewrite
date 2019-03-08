@@ -12,6 +12,7 @@ import Button from '@material-ui/core/Button';
 import Icon from '@material-ui/core/Icon';
 import Fab from '@material-ui/core/Fab';
 import NavigationIcon from '@material-ui/icons/Navigation';
+import { Redirect } from 'react-router-dom';
 
 const styles = theme => ({
     root: {
@@ -49,6 +50,7 @@ class Login extends React.Component {
         password: '',
         username: '',
         showPassword: false,
+        errors: [],
     };
 
     handleChange = prop => event => {
@@ -59,55 +61,86 @@ class Login extends React.Component {
         this.setState(state => ({ showPassword: !state.showPassword }));
     };
 
+    handleSubmit = event => {
+        const { username, password, errors } = this.state;
+
+        event.preventDefault();
+        //dummy authentication
+        if (username == '') {
+            this.setState({ errors: "Please enter your username" });
+        }
+        if (password == '') {
+            this.setState({ errors: "Please enter your password" });
+        }
+        if (errors.length == 0) {
+            localStorage.setItem('reactor-token', username.split(' ').reverse().join(password));
+            return <Redirect to="/home" />;
+        }
+    }
+
     render() {
         const { classes } = this.props;
 
-        return (
-            <div className={classes.root}>
-                
-                <TextField
-                    id="filled-adornment-weight"
-                    className={classNames(classes.margin, classes.textField)}
-                    variant="filled"
-                    label="Username"
-                    value={this.state.username}
-                    onChange={this.handleChange('username')}
-                    helperText="Username"
-                    InputProps={{
-                        endAdornment: (
-                            <InputAdornment variant="filled" position="end">
-                                <Icon>person</Icon>
-                            </InputAdornment>
-                        ),
-                    }}
-                />
-                <TextField
-                    id="filled-adornment-password"
-                    className={classNames(classes.margin, classes.textField)}
-                    variant="filled"
-                    type={this.state.showPassword ? 'text' : 'password'}
-                    label="Password"
-                    value={this.state.password}
-                    onChange={this.handleChange('password')}
-                    InputProps={{
-                        endAdornment: (
-                            <InputAdornment variant="filled" position="end">
-                                <IconButton
-                                    aria-label="Toggle password visibility"
-                                    onClick={this.handleClickShowPassword}
-                                >
-                                    {this.state.showPassword ? <VisibilityOff /> : <Visibility />}
-                                </IconButton>
-                            </InputAdornment>
-                        ),
-                    }}
-                />
+        const LoginPage = (
+            <div className={classes.root} style={{ padding: 7 }}>
 
-                <Fab variant="extended" color="primary" aria-label="Add" className={classes.margin} style={{ width: '100%'}}>
-                    <NavigationIcon className={classes.extendedIcon} />
-                    LOGIN
-                </Fab>
+                <center style={{ fontSize: 25, fontFamily: 'cursive', margin: 'auto', marginTop: 10, marginBottom: 10 }}>
+                    LOGIN to <b>Reactor Musiq</b>
+                </center>
+
+                { this.state.errors.length > 0 ?  <div>{this.state.errors}</div> : ''}
+
+                <form onSubmit={this.handleSubmit} className={classes.root}>
+                
+                    <TextField
+                        id="filled-adornment-weight"
+                        className={classNames(classes.margin, classes.textField)}
+                        variant="filled"
+                        label="Username"
+                        value={this.state.username}
+                        onChange={this.handleChange('username')}
+                        InputProps={{
+                            endAdornment: (
+                                <InputAdornment variant="filled" position="end">
+                                    <Icon>person</Icon>
+                                </InputAdornment>
+                            ),
+                        }}
+                    />
+                    <TextField
+                        id="filled-adornment-password"
+                        className={classNames(classes.margin, classes.textField)}
+                        variant="filled"
+                        type={this.state.showPassword ? 'text' : 'password'}
+                        label="Password"
+                        value={this.state.password}
+                        onChange={this.handleChange('password')}
+                        InputProps={{
+                            endAdornment: (
+                                <InputAdornment variant="filled" position="end">
+                                    <IconButton
+                                        aria-label="Toggle password visibility"
+                                        onClick={this.handleClickShowPassword}
+                                    >
+                                        {this.state.showPassword ? <VisibilityOff /> : <Visibility />}
+                                    </IconButton>
+                                </InputAdornment>
+                            ),
+                        }}
+                    />
+
+                    <Fab variant="extended" type="submit" color="primary" aria-label="Add" className={classes.margin} style={{ width: '100%'}}>
+                        <NavigationIcon className={classes.extendedIcon} />
+                        LOGIN
+                    </Fab>
+                </form>
             </div>
+        );
+
+        let token = localStorage.getItem('reactor-token');
+
+        return (
+            !token ? LoginPage : <Redirect to="/home" />
         );
     }
 }
