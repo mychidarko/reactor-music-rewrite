@@ -7,6 +7,7 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
+import { Link } from 'react-router-dom';
 
 const styles = {
     root: {
@@ -31,14 +32,14 @@ function GuestHeader(props) {
                         <MenuIcon onClick={props.onToggleDrawer} />
                     </IconButton>
                     <Typography variant="h6" color="inherit" className={classes.grow}>
-                        Reactor Musiq
+                        Reactor
                     </Typography>
-                    <a href="/login" style={{ textDecoration: 'none', color: 'white'}}>
+                    <Link to="/login" style={{ textDecoration: 'none', color: 'white'}}>
                         <Button color="inherit">Login</Button>
-                    </a>
-                    <a href="/register" style={{ textDecoration: 'none', color: 'white'}}>
-                        <Button color="inherit">Sign Up</Button>
-                    </a>
+                    </Link>
+                    <Link to="/register" style={{ textDecoration: 'none', color: 'white'}}>
+                        <Button color="inherit">Register</Button>
+                    </Link>
                 </Toolbar>
             </AppBar>
         </div>
