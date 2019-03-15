@@ -55,7 +55,7 @@ class Layout extends React.Component {
     constructor(props) {
         super(props);
         this.state={
-            userHasAuth: false,
+            userHasAuth: true,
             left: false
         }
     }
